@@ -1,0 +1,116 @@
+﻿@model IEnumerable<EventManager.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            @*@Html.ActionLink("Event Manager", "LogIn", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <a href='@Url.Action("LogIn", "Home")'>
+                        <img class="img-responsive" src="@Url.Content("~/Content/images/Sogeti Logo 2016_red PNG.png")" />
+                    </a> *@
+            <a class="navbar-brand" href="#">
+                <img alt="Sogeti" src="~/Content/images/Sogeti Logo 2016_red PNG.png" width="100">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <button type="button" id="Register" class="btn btn-default navbar-btn navbar-right">Sign out</button>
+        </div>
+    </div>
+</div>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneHome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneCell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneOffice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.foodPref)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.companyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.branch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.additionalInfo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.city)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneHome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneCell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneOffice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.foodPref)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.companyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.branch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.additionalInfo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.city)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.user_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.user_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.user_ID })
+        </td>
+    </tr>
+}
+
+</table>

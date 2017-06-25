@@ -1,0 +1,137 @@
+﻿@model EventManager.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            @*@Html.ActionLink("Event Manager", "LogIn", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <a href='@Url.Action("LogIn", "Home")'>
+                        <img class="img-responsive" src="@Url.Content("~/Content/images/Sogeti Logo 2016_red PNG.png")" />
+                    </a> *@
+            <a class="navbar-brand" href="#">
+                <img alt="Sogeti" src="~/Content/images/Sogeti Logo 2016_red PNG.png" width="100">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <button type="button" id="Register" class="btn btn-default navbar-btn navbar-right">Sign out</button>
+        </div>
+    </div>
+</div>
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneHome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneHome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneCell)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneCell)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phoneOffice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phoneOffice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.foodPref)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.foodPref)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.companyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.companyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.branch)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.branch)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.additionalInfo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.additionalInfo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.city)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

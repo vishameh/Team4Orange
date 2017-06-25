@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EventRegModelStoreContainer" CdmEntityContainer="EventRegEntities">
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="EventRegModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="event_ID" ColumnName="event_ID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="logoPath" ColumnName="logoPath" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="location_ID" ColumnName="location_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="EventRegModel.Location">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="location_ID" ColumnName="location_ID" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="addressType" ColumnName="addressType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Registrations">
+      <EntityTypeMapping TypeName="EventRegModel.Registration">
+        <MappingFragment StoreEntitySet="Registration">
+          <ScalarProperty Name="event_ID" ColumnName="event_ID" />
+          <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+          <ScalarProperty Name="isModerator" ColumnName="isModerator" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="EventRegModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="phoneHome" ColumnName="phoneHome" />
+          <ScalarProperty Name="phoneCell" ColumnName="phoneCell" />
+          <ScalarProperty Name="phoneOffice" ColumnName="phoneOffice" />
+          <ScalarProperty Name="foodPref" ColumnName="foodPref" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="additionalInfo" ColumnName="additionalInfo" />
+          <ScalarProperty Name="location_ID" ColumnName="location_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

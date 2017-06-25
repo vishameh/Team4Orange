@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventRegModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="event_ID" />
+    </Key>
+    <Property Name="event_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="startDate" Type="date" Nullable="false" />
+    <Property Name="endDate" Type="date" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="20" />
+    <Property Name="category" Type="varchar" MaxLength="30" />
+    <Property Name="type" Type="varchar" MaxLength="30" />
+    <Property Name="logoPath" Type="varchar" MaxLength="100" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="location_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="location_ID" />
+    </Key>
+    <Property Name="location_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="city" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="state" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="zip" Type="int" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="addressType" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="event_ID" />
+      <PropertyRef Name="user_ID" />
+    </Key>
+    <Property Name="event_ID" Type="int" Nullable="false" />
+    <Property Name="user_ID" Type="int" Nullable="false" />
+    <Property Name="isModerator" Type="bit" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_ID" />
+    </Key>
+    <Property Name="user_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="lastName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="phoneHome" Type="varchar" MaxLength="20" />
+    <Property Name="phoneCell" Type="varchar" MaxLength="20" />
+    <Property Name="phoneOffice" Type="varchar" MaxLength="20" />
+    <Property Name="foodPref" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="companyName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="branch" Type="varchar" MaxLength="20" />
+    <Property Name="additionalInfo" Type="varchar" MaxLength="50" />
+    <Property Name="location_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Event__location___46E78A0C">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="location_ID" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="location_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__event__49C3F6B7">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="event_ID" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="event_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__user___4AB81AF0">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="user_ID" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="user_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__location_I__440B1D61">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="location_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="location_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EventRegModelStoreContainer">
+    <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Event__location___46E78A0C" Association="Self.FK__Event__location___46E78A0C">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="Event" EntitySet="Event" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__event__49C3F6B7" Association="Self.FK__Registrat__event__49C3F6B7">
+      <End Role="Event" EntitySet="Event" />
+      <End Role="Registration" EntitySet="Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__user___4AB81AF0" Association="Self.FK__Registrat__user___4AB81AF0">
+      <End Role="User" EntitySet="User" />
+      <End Role="Registration" EntitySet="Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__location_I__440B1D61" Association="Self.FK__User__location_I__440B1D61">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

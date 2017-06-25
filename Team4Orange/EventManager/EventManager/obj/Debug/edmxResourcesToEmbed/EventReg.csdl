@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EventRegModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="event_ID" />
+    </Key>
+    <Property Name="event_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="category" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="logoPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="location_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Location" Relationship="Self.FK__Event__location___46E78A0C" FromRole="Event" ToRole="Location" />
+    <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__event__49C3F6B7" FromRole="Event" ToRole="Registration" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="location_ID" />
+    </Key>
+    <Property Name="location_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="city" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="zip" Type="Int32" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="addressType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Events" Relationship="Self.FK__Event__location___46E78A0C" FromRole="Location" ToRole="Event" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__User__location_I__440B1D61" FromRole="Location" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="event_ID" />
+      <PropertyRef Name="user_ID" />
+    </Key>
+    <Property Name="event_ID" Type="Int32" Nullable="false" />
+    <Property Name="user_ID" Type="Int32" Nullable="false" />
+    <Property Name="isModerator" Type="Boolean" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Event" Relationship="Self.FK__Registrat__event__49C3F6B7" FromRole="Registration" ToRole="Event" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Registrat__user___4AB81AF0" FromRole="Registration" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_ID" />
+    </Key>
+    <Property Name="user_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phoneHome" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phoneCell" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="phoneOffice" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="foodPref" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="companyName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="branch" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="additionalInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="location_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Location" Relationship="Self.FK__User__location_I__440B1D61" FromRole="User" ToRole="Location" />
+    <NavigationProperty Name="Registrations" Relationship="Self.FK__Registrat__user___4AB81AF0" FromRole="User" ToRole="Registration" />
+  </EntityType>
+  <Association Name="FK__Event__location___46E78A0C">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="location_ID" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="location_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__event__49C3F6B7">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="event_ID" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="event_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__User__location_I__440B1D61">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="location_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="location_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Registrat__user___4AB81AF0">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="user_ID" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="user_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EventRegEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="Locations" EntityType="Self.Location" />
+    <EntitySet Name="Registrations" EntityType="Self.Registration" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Event__location___46E78A0C" Association="Self.FK__Event__location___46E78A0C">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__event__49C3F6B7" Association="Self.FK__Registrat__event__49C3F6B7">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Registration" EntitySet="Registrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__User__location_I__440B1D61" Association="Self.FK__User__location_I__440B1D61">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Registrat__user___4AB81AF0" Association="Self.FK__Registrat__user___4AB81AF0">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Registration" EntitySet="Registrations" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

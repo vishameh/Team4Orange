@@ -1,0 +1,38 @@
+﻿@using System.Data
+<!DOCTYPE html>
+<html lang="en">
+
+@{
+    ViewBag.Title = "Home";
+    var name = "sup bruh";
+    using (var db = new EventRegEntities())
+    {
+        using (var tx = db.Database.BeginTransaction(IsolationLevel.Unspecified))
+        {
+            name = db.Users.Find(1).firstName;
+            tx.Commit();
+        }
+    }
+}
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                @*@Html.ActionLink("Event Manager", "LogIn", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href='@Url.Action("LogIn", "Home")'>
+                    <img class="img-responsive" src="@Url.Content(" ~/Content/images/Sogeti Logo 2016_red PNG.png")" />
+                </a> *@
+                <a class="navbar-brand" href="#">
+                    <img alt="Sogeti" src="~/Content/images/Sogeti Logo 2016_red PNG.png" width="100">
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <button type="button" id="Register" class="btn btn-default navbar-btn navbar-right">Sign out</button>
+            </div>
+        </div>
+    </div>
+    <h2>Home Test @name</h2>
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="95755d42c2db4313a1c9d9aa015dcdd4" Name="Diagram1">
+        <EntityTypeShape EntityType="EventRegModel.Event" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventRegModel.Location" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventRegModel.Registration" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EventRegModel.User" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="EventRegModel.FK__Event__location___46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="EventRegModel.FK__Registrat__event__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="EventRegModel.FK__User__location_I__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="EventRegModel.FK__Registrat__user___4AB81AF0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

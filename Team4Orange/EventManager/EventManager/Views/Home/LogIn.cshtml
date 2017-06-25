@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+@{
+    ViewBag.Title = "Sign In";
+}
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            @*@Html.ActionLink("Event Manager", "LogIn", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <a href='@Url.Action("LogIn", "Home")'>
+                <img class="img-responsive" src="@Url.Content("~/Content/images/Sogeti Logo 2016_red PNG.png")" />
+            </a> *@
+            <a class="navbar-brand" href="#">
+                <img alt="Sogeti" src="~/Content/images/Sogeti Logo 2016_red PNG.png" width="100">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <button type="button" id="Register" class="btn btn-default navbar-btn navbar-right">Register</button>
+        </div>
+    </div>
+</div>
+<div id="logInPane">
+    <div style="padding: 5px" class="page-header">
+        <h1>Sign in:</h1>
+    </div>
+    <div style="padding: 5px" class="input-group">
+        <input type="text" class="form-control" placeholder="Username">
+    </div>
+    <div style="padding: 5px" class="input-group">
+        <input type="text" class="form-control" placeholder="Password">
+    </div>
+    <div style="padding: 5px">
+        <button class="btn btn-info" type="button">Sign in</button>
+    </div>
+    <div style="padding: 5px">
+        <button class="btn btn-info" type="button">Forgot Password</button>
+    </div>
+</div>
+</body>
+</html>
